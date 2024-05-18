@@ -1,4 +1,4 @@
-import "./App.css";
+import "../App.css";
 import { useEffect, useState } from "react";
 
 const Movies = () => {
@@ -26,23 +26,20 @@ const Movies = () => {
     // console.log(movies);
   }
   return (
-    <main>
-      <section>
-        <h2> Movies</h2>
-        {movies.map((movie) => (
-          <div key={movie.id} className="listing--details">
-            <div className="no-overflow">
-              <img
-                id="poster"
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt={movie.title}
-              />
-            </div>
-            <p className="movie--name">{movie.title}</p>
+    <div className="movie--display">
+      {movies.map((movie) => (
+        <div key={movie.id} className="listing--details">
+          <div className="no-overflow">
+            <img
+              id="poster"
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={movie.title}
+            />
           </div>
-        ))}
-      </section>
-    </main>
+          <p className="movie--name">{movie.title}</p>
+        </div>
+      ))}
+    </div>
   );
 };
 export default Movies;

@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import Movies from "./pages/Movies.jsx";
-import Navbar from "./components/navbar.jsx";
-import Tv from "./pages/Tv.jsx";
+
+import App from "./App.jsx";
+import Navbar from "./component/navbar.jsx";
+import Movies from "./pages/movies.jsx";
+import TV from "./pages/tv.jsx";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Detail from "./pages/detail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +34,25 @@ const router = createBrowserRouter([
     element: (
       <>
         <Navbar />
-        <Tv />
+        <TV />
+      </>
+    ),
+  },
+  {
+    path: "/search/:endpoint/:id",
+    element: (
+      <>
+        <Navbar />
+        <Detail />
+      </>
+    ),
+  },
+  {
+    path: "/search/:endpoint/:id",
+    element: (
+      <>
+        <Navbar />
+        <Detail />
       </>
     ),
   },

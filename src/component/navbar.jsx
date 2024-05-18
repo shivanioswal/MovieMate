@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+
 export default function Navbar() {
   return (
     <nav className="nav">
       <Link to={"/"}>
-        <h1 id="logo">MovieMate</h1>
+        <h1 id="logo">Cineplex</h1>
       </Link>
       <ul className="nav--links">
         <Link to={"/movies"}>
