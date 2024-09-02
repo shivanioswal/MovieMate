@@ -6,9 +6,16 @@ import App from "./App.jsx";
 import Navbar from "./component/navbar.jsx";
 import Movies from "./pages/movies.jsx";
 import TV from "./pages/tv.jsx";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Detail from "./pages/detail.jsx";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import FavoritesContextProvider from "./context/favorites.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Listing from "./pages/listing.jsx";
+
+import WatchlaterContextProvider from "./context/watchlater";
 
 const router = createBrowserRouter([
   {
@@ -48,11 +55,20 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/search/:endpoint/:id",
+    path: "/favorites",
     element: (
       <>
         <Navbar />
-        <Detail />
+        <Listing />
+      </>
+    ),
+  },
+  {
+    path: "/watchlater",
+    element: (
+      <>
+        <Navbar />
+        <Listing />
       </>
     ),
   },
@@ -60,6 +76,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <FavoritesContextProvider>
+      <WatchlaterContextProvider>
+        <RouterProvider router={router} />
+        <ToastContainer autoClose={3000} />
+      </WatchlaterContextProvider>
+    </FavoritesContextProvider>
   </React.StrictMode>
 );

@@ -1,6 +1,6 @@
 import { popularMovies, popularTv } from "./constants";
 
-async function fetchPopularMovies(setMovie) {
+async function fetchPopularMovies(setMovies) {
   const response = await fetch(popularMovies, {
     method: "GET",
     headers: {
@@ -8,24 +8,25 @@ async function fetchPopularMovies(setMovie) {
     },
   });
   const movies = await response.json();
-  setMovie(movies.results);
+  setMovies(movies.results);
 }
 
 async function fetchPopularTVShows(setTVShows) {
   const response = await fetch(popularTv, {
-    methodthod: "GET",
+    method: "GET",
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY} `,
     },
   });
   const tv = await response.json();
+
   setTVShows(tv.results);
 }
 
 async function fetchDetails(url, setDetails, setIsLoading) {
   setIsLoading(true);
   const response = await fetch(url, {
-    methodthod: "GET",
+    method: "GET",
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY} `,
     },
@@ -36,7 +37,7 @@ async function fetchDetails(url, setDetails, setIsLoading) {
   } else {
     setDetails(null);
   }
-  setTimeout(() => setIsLoading(false), 2000);
+  setTimeout(() => setIsLoading(false), 1000); //after 1 second we are setting isloading to false
 }
 
 export { fetchPopularMovies, fetchPopularTVShows, fetchDetails };

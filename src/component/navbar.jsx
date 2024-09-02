@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className="nav">
       <Link to={"/"}>
-        <h1 id="logo">Cineplex</h1>
+        <h1 id="logo">MovieMate</h1>
       </Link>
       <ul className="nav--links">
         <Link to={"/movies"}>
@@ -12,6 +12,12 @@ export default function Navbar() {
         </Link>
         <Link to={"/tv"}>
           <li>TV Shows</li>
+        </Link>
+        <Link to={"/favorites"}>
+          <li>Favorites</li>
+        </Link>
+        <Link to={"/watchlater"}>
+          <li>Watch Later</li>
         </Link>
       </ul>
     </nav>

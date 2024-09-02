@@ -1,45 +1,31 @@
-import "../App.css";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { fetchPopularMovies } from "../util/helper";
+import { Link } from "react-router-dom";
+import { IMDBImagePath } from "../util/constants";
 
-const Movies = () => {
-  const [movies, setMovie] = useState([]);
+export default function Movies() {
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetchPopularMovies();
-  });
+    fetchPopularMovies(setMovies);
+  }, []);
 
-  async function fetchPopularMovies() {
-    const responseM = await fetch(
-      "https://api.themoviedb.org/3/movie/popular",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY} `,
-        },
-      }
-    );
-    const popularMovies = await responseM.json();
-    //json because DB is very large and json can make it into a smaller size
-    console.log(popularMovies);
-    setMovie(popularMovies.results); //all popular movies are now stored in state where we will display it 1 by 1 in map()
-    // movies = popularMovies;
-    // console.log(movies);
-  }
   return (
-    <div className="movie--display">
+    <div className="movie--container">
       {movies.map((movie) => (
-        <div key={movie.id} className="listing--details">
-          <div className="no-overflow">
-            <img
-              id="poster"
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt={movie.title}
-            />
+        <Link key={movie.id} to={`/search/movie/${movie.id}`}>
+          <div className="listing--details">
+            <div className="no-overflow">
+              <img
+                id="poster"
+                src={`${IMDBImagePath}/${movie.poster_path}`}
+                alt={movie.title}
+              />
+            </div>
+            <p className="name">{movie.title}</p>
           </div>
-          <p className="movie--name">{movie.title}</p>
-        </div>
+        </Link>
       ))}
     </div>
   );
-};
-export default Movies;
+}

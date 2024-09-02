@@ -6,9 +6,9 @@ const IMDBImagePath = "https://image.tmdb.org/t/p/w500";
 
 const settings = {
   dots: false,
-  infinite: true,
+  infinite: false,
   speed: 500,
-  slidesToShow: 6,
+  slidesToShow: 4,
   slidesToScroll: 1,
 };
 
